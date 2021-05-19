@@ -29,9 +29,57 @@ std::ostream& operator<<(std::ostream& out, const Conjunto& _c)
 std::istream& operator>>(std::istream& in, const Conjunto& _c)
 {
 	
-	for (size_t i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		in >> _c.cadena[i];
 	}
 	return in;
+}
+
+Conjunto& operator+(const Conjunto& a, const Conjunto& b)
+{
+	Conjunto resultado;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (a.cadena[i] == i || b.cadena[i])
+		{
+			resultado.cadena[i] = i;
+		}
+	}
+
+	return resultado;
+}
+
+Conjunto& operator-(const Conjunto& a, const Conjunto& b)
+{
+	Conjunto resultado;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (a.cadena[i] == b.cadena[i])
+		{
+			resultado.cadena[i] = -1;
+		}
+	}
+}
+
+Conjunto opBurbuja(const Conjunto& c1)
+{
+	Conjunto novo = c1;
+	int n;
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (novo.cadena[i] > novo.cadena[j])
+			{
+				n = c1.cadena[i];
+				novo.cadena[i] = novo.cadena[j];
+				novo.cadena[j] = n;
+			}
+		}
+	}
+	return novo;
 }
