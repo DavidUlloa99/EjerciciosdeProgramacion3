@@ -14,6 +14,7 @@ Conjunto::Conjunto(const char* _cadena)
 	{
 		cadena[i] = (int)_cadena[i] - 48;
 	}
+
 }
 
 std::ostream& operator<<(std::ostream& out, const Conjunto& _c)
@@ -47,6 +48,7 @@ Conjunto& operator+(const Conjunto& a, const Conjunto& b)
 			resultado.cadena[i] = i;
 		}
 	}
+	resultado = opBurbuja(resultado);
 
 	return resultado;
 }
@@ -61,7 +63,13 @@ Conjunto& operator-(const Conjunto& a, const Conjunto& b)
 		{
 			resultado.cadena[i] = -1;
 		}
+		else
+		{
+			resultado.cadena[i] = i;
+		}
 	}
+	resultado = opBurbuja(resultado);
+	return resultado;
 }
 
 Conjunto opBurbuja(const Conjunto& c1)
